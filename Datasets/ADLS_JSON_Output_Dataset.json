@@ -1,0 +1,15 @@
+{
+  "name": "ADLS_JSON_Output_Dataset",
+  "properties": {
+    "type": "Json",
+    "linkedServiceName": {
+      "referenceName": "ADLS_LinkedService"
+    },
+    "typeProperties": {
+      "location": {
+        "type": "AzureBlobFSLocation",
+        "filePath": "country-data/@{item()}.json"
+      }
+    }
+  }
+}
