@@ -1,0 +1,12 @@
+{
+  "name": "SQL_Customers_Dataset",
+  "properties": {
+    "type": "AzureSqlTable",
+    "linkedServiceName": {
+      "referenceName": "SQL_DB_LinkedService"
+    },
+    "typeProperties": {
+      "tableName": "Customers"
+    }
+  }
+}
