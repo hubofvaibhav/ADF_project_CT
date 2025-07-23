@@ -1,0 +1,9 @@
+{
+  "name": "ADLS_LinkedService",
+  "properties": {
+    "type": "AzureBlobFS",
+    "typeProperties": {
+      "url": "https://<your_storage_account>.dfs.core.windows.net"
+    }
+  }
+}
