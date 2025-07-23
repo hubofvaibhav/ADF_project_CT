@@ -1,0 +1,9 @@
+{
+  "name": "REST_Country_API_Dataset",
+  "properties": {
+    "type": "RestResource",
+    "typeProperties": {
+      "relativeUrl": "v3.1/name/@{item()}"
+    }
+  }
+}
