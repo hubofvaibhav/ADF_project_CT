@@ -1,0 +1,10 @@
+{
+  "name": "REST_LinkedService",
+  "properties": {
+    "type": "RestService",
+    "typeProperties": {
+      "url": "https://restcountries.com",
+      "authenticationType": "Anonymous"
+    }
+  }
+}
