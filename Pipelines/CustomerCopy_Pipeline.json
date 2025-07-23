@@ -1,0 +1,44 @@
+{
+  "name": "CustomerCopy_Pipeline",
+  "activities": [
+    {
+      "name": "GetCustomerCount",
+      "type": "Lookup",
+      "typeProperties": {
+        "source": {
+          "query": "SELECT COUNT(*) as cnt FROM Customers"
+        }
+      }
+    },
+    {
+      "name": "CheckCountAndCopy",
+      "type": "IfCondition",
+      "typeProperties": {
+        "expression": {
+          "value": "@greater(activity('GetCustomerCount').output.firstRow.cnt, 500)",
+          "type": "Expression"
+        },
+        "ifTrueActivities": [
+          {
+            "name": "CopyCustomerToADLS",
+            "type": "Copy",
+            "inputs": ["SQL_Customers_Dataset"],
+            "outputs": ["ADLS_JSON_Output_Dataset"]
+          },
+          {
+            "name": "CallProductPipeline",
+            "type": "ExecutePipeline",
+            "typeProperties": {
+              "pipeline": {
+                "referenceName": "ProductCopy_Pipeline"
+              },
+              "parameters": {
+                "customerCount": "@activity('GetCustomerCount').output.firstRow.cnt"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
