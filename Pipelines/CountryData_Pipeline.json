@@ -1,0 +1,20 @@
+{
+  "name": "CountryData_Pipeline",
+  "activities": [
+    {
+      "name": "ForEachCountry",
+      "type": "ForEach",
+      "typeProperties": {
+        "items": ["india", "us", "uk", "china", "russia"],
+        "activities": [
+          {
+            "name": "CopyCountryData",
+            "type": "Copy",
+            "inputs": ["REST_Country_API_Dataset"],
+            "outputs": ["ADLS_JSON_Output_Dataset"]
+          }
+        ]
+      }
+    }
+  ]
+}
