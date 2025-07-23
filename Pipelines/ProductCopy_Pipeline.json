@@ -1,0 +1,28 @@
+{
+  "name": "ProductCopy_Pipeline",
+  "parameters": {
+    "customerCount": {
+      "type": "Int"
+    }
+  },
+  "activities": [
+    {
+      "name": "CheckCustomerCount",
+      "type": "IfCondition",
+      "typeProperties": {
+        "expression": {
+          "value": "@greater(pipeline().parameters.customerCount, 600)",
+          "type": "Expression"
+        },
+        "ifTrueActivities": [
+          {
+            "name": "CopyProductToADLS",
+            "type": "Copy",
+            "inputs": ["SQL_Products_Dataset"],
+            "outputs": ["ADLS_JSON_Output_Dataset"]
+          }
+        ]
+      }
+    }
+  ]
+}
